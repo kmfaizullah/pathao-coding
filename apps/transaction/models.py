@@ -1,4 +1,5 @@
 # Python imports
+from locale import currency
 import uuid
 
 # Django imports
@@ -26,6 +27,12 @@ class Wallet(BaseModel):
         blank=True,
         null=True,
         default=5000.00,
+    )
+    currency_type = models.CharField(
+        verbose_name="Currency Type",
+        db_column="currency_type",
+        default='BDT',
+        max_length=125,
     )
 
     def __str__(self):
