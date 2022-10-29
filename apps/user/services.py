@@ -182,4 +182,11 @@ class UserApiService():
 
         return user_data_history
 
+    def user_total_balance(self):
+        user_total_balance = 0.00
+        all_wallet_data = Wallet.objects.all()
+        for wallet in all_wallet_data:
+            user_total_balance = user_total_balance + wallet.amount
+        return user_total_balance
+
 

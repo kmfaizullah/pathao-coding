@@ -75,6 +75,7 @@ else:
 
 # Rest framework settings
 from config.rest_config.config import REST_FRAMEWORK_CONFIG
+REST_FRAMEWORK = REST_FRAMEWORK_CONFIG
 
 ROOT_URLCONF = 'config.urls'
 

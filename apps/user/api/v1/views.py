@@ -85,4 +85,32 @@ class UserModelViewSet(ModelViewSetPermissionMixin):
             {"data": txn_history}, status=HTTP_200_OK
         )
 
+    @action(
+        detail=False,
+        methods=["get"],
+        url_path="all_user_balance",
+        url_name="all_user_balance",
+        permission_classes=[AllowAny],
+    )
+    def user_total_balance(self, request, *args, **kwargs):
+        user_service = UserApiService(request=request)
+        all_total_balance = user_service.user_total_balance()
+        return Response(
+            {"total_balance": all_total_balance}, status=HTTP_200_OK
+        )
+
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path="get_balance",
+        url_name="get_balance",
+        permission_classes=[IsUser],
+    )
+    def particular_user_balance(self, request, *args, **kwargs):
+        user_obj = self.get_object()
+        balance = user_obj.user_having_wallet.amount
+        return Response(
+            {"amount": balance}, status=HTTP_200_OK
+        )
+
 

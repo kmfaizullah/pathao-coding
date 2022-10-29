@@ -74,6 +74,7 @@ pip-delete-this-directory.txt
 
 __pycache__
 .env
+env
 
 db.sqlite3
 media
