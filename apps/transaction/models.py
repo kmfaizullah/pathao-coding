@@ -85,7 +85,10 @@ class TransactionHistory(BaseModel):
     )
 
     def __str__(self):
-        return f"{self.from_user.user_name} sends {self.transaction_amount} to {self.to_user.user_name}"
+        if self.from_user and self.to_user:
+            return f"{self.from_user.user_name} sends {self.transaction_amount} to {self.to_user.user_name}"
+        else:
+            return f"Default transaction amount {self.transaction_amount} sends to {self.to_user.user_name}"
 
     class Meta:
         verbose_name = "TransactionHistory"

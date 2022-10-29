@@ -41,6 +41,7 @@ class UserModelViewSet(ModelViewSetPermissionMixin):
 
     def create(self, request, *args, **kwargs):
         admin_service = UserApiService(request=request)
+        user = admin_service.create_user()
         return Response(
             {"message": "User has been successfully created"}, status=HTTP_200_OK
         )
