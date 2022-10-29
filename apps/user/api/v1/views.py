@@ -36,7 +36,7 @@ class UserModelViewSet(ModelViewSetPermissionMixin):
     model = User
     serializer_class = UserSerializer
     lookup_field = "uid"
-    http_method_names = ["post","patch"]
+    http_method_names = ["post","patch", "get"]
     permission_classes_by_action = {
         "create": [AllowAny],
     }
@@ -64,13 +64,25 @@ class UserModelViewSet(ModelViewSetPermissionMixin):
         history = user_service.amount_transfer_from_one_wallet_to_another_wallet(
             from_user=user_obj
         )
-        # user_role = UserRole.objects.filter(user=user_obj).first()
-        # user_role.is_active = False if user_role.is_active else True
-        # user_obj.is_active = False if user_obj.is_active else True
-        # user_obj.save()
-        # user_role.save()
         return Response(
             {"message": "User requested amount has been successfully transferred"}, status=HTTP_200_OK
+        )
+
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path="transaction_history",
+        url_name="transaction_history",
+        permission_classes=[AllowAny],
+    )
+    def particular_user_transaction_history(self, request, *args, **kwargs):
+        user_obj = self.get_object()
+        user_service = UserApiService(request=request)
+        txn_history = user_service.user_transaction_history(
+            request_user=user_obj
+        )
+        return Response(
+            {"data": txn_history}, status=HTTP_200_OK
         )
 
 

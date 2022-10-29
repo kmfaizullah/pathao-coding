@@ -5,7 +5,7 @@ from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 from django.db import transaction
-from apps.transaction.models import Wallet
+from apps.transaction.models import Wallet, TransactionHistory
 from apps.user.models import User
 
 
@@ -156,4 +156,30 @@ class UserApiService():
         txn_data = txn_history_obj.create_transaction_history(
             request_data=txn_history_data
         )
+
+    def format_transaction_data(self, data):
+        return {
+                'from_user': data.from_user.user_name,
+                'to_user': data.to_user.user_name,
+                'transaction_type': data.transaction_id,
+                'transaction_date': data.created_at,
+                'amount': data.transaction_amount,
+            }
+    def user_transaction_history(self,request_user):
+        user_data_history =[]
+        all_debit_amount = TransactionHistory.objects.filter(
+            from_user = request_user
+        )
+        all_credit_amount = TransactionHistory.objects.filter(
+            to_user = request_user
+        )
+        for debit_history in all_debit_amount:
+            user_data_history.append(self.format_transaction_data(data=debit_history))
+        for credit_history in all_credit_amount:
+            user_data_history.append(self.format_transaction_data(data=credit_history))
+
+        user_data_history.sort(key=lambda item:item['transaction_date'], reverse=True)
+
+        return user_data_history
+
 
