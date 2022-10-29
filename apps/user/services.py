@@ -183,7 +183,7 @@ class UserApiService():
             object: user formated data
         """
         return {
-                'from_user': data.from_user.user_name,
+                'from_user': data.from_user.user_name if data.from_user else None,
                 'to_user': data.to_user.user_name,
                 'transaction_type': data.transaction_id,
                 'transaction_date': data.created_at,

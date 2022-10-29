@@ -79,3 +79,161 @@ Once build is complete, please run the docker file using the following command:
 sudo run -d -p 8000:8000 pathao:0.0.1
 ```
 After successful execution of the above command will spin up the docker file and you may access the code by navigating http://127.0.0.0.1:8000 .
+
+### Api Documentation
+
+
+###### User Creation (Signup)
+
+```End Point```: ```{base_url}/v1/user/``` <br>
+```Request Method```: ```Post``` <br>
+```Authorization```: ```Allowany``` <br>
+```Args Example: ```
+```
+{
+    "user_name":"test_user",
+    "pin":"12345"
+}
+```
+
+```Sucecessful Response: ```
+```
+{
+    "message": "User has been successfully created"
+}
+```
+
+```Unsuccessful Response: ```
+```
+{
+    "status": 400,
+    "errors": [
+        {
+            "field": "user_name",
+            "message": "User with this User Name already exists."
+        }
+    ]
+}
+```
+
+
+###### User Login Api
+
+```End Point```: ```{base_url}/v1/user/login/``` <br>
+```Request Method```: ```Post``` <br>
+```Authorization```: ```Allowany``` <br>
+```Args Example: ```
+```
+{
+    "user_name":"test_user",
+    "password":"12345"
+}
+```
+
+```Sucecessful Response: ```
+```
+{
+    "user_name": "test_user",
+    "token": "b806b6036473ad78b52ff3a032b830b501d6c9a1",
+    "user_uid": "f174893f-8dc8-41e2-b001-54472cab5d9f"
+}
+```
+
+```Unsuccessful Response: ```
+```
+{
+    "status": 403,
+    "errors": [
+        {
+            "field": "detail",
+            "message": "test_user5 is not a valid user"
+        }
+    ]
+}
+```
+###### User to user wallet transfer
+
+```End Point```: ```{base_url}/v1/user/{user_uid}/amount_transfer/``` <br>
+```Request Method```: ```Path``` <br>
+```Authorization```: ```Required[Send Authorization parameter in header using Token prefix. For authentication you will get token after successful login]``` <br>
+
+```Args Example: ```
+```
+{
+    "to_user": "test_user1",
+    "amount": 2000.00,
+    "transaction_type": "Debit"
+}
+```
+
+```Sucecessful Response: ```
+```
+{
+    "message": "User requested amount has been successfully transferred"
+}
+```
+
+```Unsuccessful Response: ```
+```
+{
+    "status": 400,
+    "errors": [
+        {
+            "field": "error",
+            "message": "You do not have enough amount to transfer"
+        }
+    ]
+}
+```
+###### User Transaction History
+
+```End Point```: ```{base_url}/v1/user/{user_uid}/transaction_history/``` <br>
+```Authorization```: ```Required[Send Authorization parameter in header using Token prefix. For authentication you will get token after successful login]``` <br>
+
+```Sucecessful Response: ```
+```
+{
+    "data": [
+        {
+            "from_user": "test_user",
+            "to_user": "test_user1",
+            "transaction_type": "01e86151-ca74-48e1-b812-7a5c7148de9b",
+            "transaction_date": "2022-10-29T17:29:45.738948",
+            "amount": 2000.0
+        },
+        {
+            "from_user": null,
+            "to_user": "test_user",
+            "transaction_type": "f4c4e598-dffe-453d-af9b-bd0f89c21ef0",
+            "transaction_date": "2022-10-29T17:00:26.243589",
+            "amount": 5000.0
+        }
+    ]
+}
+```
+
+```Unsuccessful Response: ```
+```
+{
+    "status": 404,
+    "errors": [
+        {
+            "field": "detail",
+            "message": "Not found."
+        }
+    ]
+}
+```
+###### Get all user total balance
+
+```End Point```: ```{base_url}/v1/user/all_user_balance``` <br>
+```Request Method```: ```Get``` <br>
+```Authorization```: ```Required[Send Authorization parameter in header using Token prefix. For authentication you will get token after successful login]``` <br>
+
+
+```Sucecessful Response: ```
+```
+{
+    "total_balance": 15000
+}
+```

@@ -56,7 +56,7 @@ class UserModelViewSet(ModelViewSetPermissionMixin):
         methods=["patch"],
         url_path="amount_transfer",
         url_name="amount_transfer",
-        permission_classes=[AllowAny],
+        permission_classes=[IsUser],
     )
     def user_wallet_to_wallet_amount_transfer(self, request, *args, **kwargs):
         user_obj = self.get_object()
@@ -73,7 +73,7 @@ class UserModelViewSet(ModelViewSetPermissionMixin):
         methods=["get"],
         url_path="transaction_history",
         url_name="transaction_history",
-        permission_classes=[AllowAny],
+        permission_classes=[IsUser],
     )
     def particular_user_transaction_history(self, request, *args, **kwargs):
         user_obj = self.get_object()
