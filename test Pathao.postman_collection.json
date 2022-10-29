@@ -1,0 +1,1072 @@
+{
+	"info": {
+		"_postman_id": "fd1bdda3-9c05-492d-8117-e2845b081446",
+		"name": "test Pathao",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22794939"
+	},
+	"item": [
+		{
+			"name": "user login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_name\":\"test_user\",\n    \"password\":\"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/v1/user/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\":\"test_user\",\n    \"password\":\"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 15:19:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "126"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Language"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_name\": \"test_user\",\n    \"token\": \"aafe85ce0fcf53aaee81fb617c9b20ed6b40446a\",\n    \"user_uid\": \"f174893f-8dc8-41e2-b001-54472cab5d9f\"\n}"
+				},
+				{
+					"name": "400 response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\":\"test_user6\",\n    \"password\":\"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 15:22:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "87"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Language"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 403,\n    \"errors\": [\n        {\n            \"field\": \"detail\",\n            \"message\": \"test_user6 is not a valid user\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "create_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_name\":\"test_user\",\n    \"pin\":\"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/v1/user/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "400 error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\":\"test_user1\",\n    \"pin\":\"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 15:18:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, GET"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Language"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 400,\n    \"errors\": [\n        {\n            \"field\": \"user_name\",\n            \"message\": \"User with this User Name already exists.\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "200 response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\":\"test_user2\",\n    \"pin\":\"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 15:19:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, GET"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Language"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User has been successfully created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "amount transfer",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token d8803dc17b0520b4ba76064793316c5d31d5e2d3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"to_user\": \"test_user1\",\n    \"amount\": 7000.00,\n    \"transaction_type\": \"Debit\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/v1/user/f174893f-8dc8-41e2-b001-54472cab5d9f/amount_transfer/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"f174893f-8dc8-41e2-b001-54472cab5d9f",
+						"amount_transfer",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 response",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 87c52ff1b2f48516424278815c53a7a21233252d",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to_user\": \"test_user3\",\n    \"amount\": 2000.00,\n    \"transaction_type\": \"Debit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/71f43db1-96e5-4132-9419-913d99b817db/amount_transfer/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								"71f43db1-96e5-4132-9419-913d99b817db",
+								"amount_transfer",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 13:15:50 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Origin, Accept-Language, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "PATCH"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User requested amount has been successfully transferred\"\n}"
+				},
+				{
+					"name": "400 response",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token d8803dc17b0520b4ba76064793316c5d31d5e2d3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to_user\": \"test_user3\",\n    \"amount\": 2000.00,\n    \"transaction_type\": \"Debit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/71f43db1-96e5-4132-9419-913d99b817db/amount_transfer/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								"71f43db1-96e5-4132-9419-913d99b817db",
+								"amount_transfer",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 15:28:57 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "PATCH"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Language"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 404,\n    \"errors\": [\n        {\n            \"field\": \"detail\",\n            \"message\": \"Not found.\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "User transaction history",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 136b428127c82580c5bcd09bb50f6d6c4716b24d",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/v1/user/f174893f-8dc8-41e2-b001-54472cab5d9f/transaction_history/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"f174893f-8dc8-41e2-b001-54472cab5d9f",
+						"transaction_history",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/71f43db1-96e5-4132-9419-913d99b817db/transaction_history/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								"71f43db1-96e5-4132-9419-913d99b817db",
+								"transaction_history",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 13:38:59 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Origin, Accept-Language, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "523"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"from_user\": \"test_user\",\n            \"to_user\": \"test_user3\",\n            \"transaction_type\": \"1338140d-45d7-4768-a0ff-8b2600cf9396\",\n            \"transaction_date\": \"2022-10-29T15:15:50.194291\",\n            \"amount\": 2000\n        },\n        {\n            \"from_user\": \"test_user1\",\n            \"to_user\": \"test_user\",\n            \"transaction_type\": \"4f49ac69-8d29-44ad-bdd5-30b8b8c0512b\",\n            \"transaction_date\": \"2022-10-29T15:13:04.357311\",\n            \"amount\": 2000\n        },\n        {\n            \"from_user\": \"test_user1\",\n            \"to_user\": \"test_user\",\n            \"transaction_type\": \"3d3d2e08-2f5f-41b1-bbc6-0a66c8584d00\",\n            \"transaction_date\": \"2022-10-29T15:12:43.668971\",\n            \"amount\": 1000\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "get total balance",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 136b428127c82580c5bcd09bb50f6d6c4716b24d",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/v1/user/all_user_balance",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"all_user_balance"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 136b428127c82580c5bcd09bb50f6d6c4716b24d",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/all_user_balance",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								"all_user_balance"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 15:41:31 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "GET"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "25"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Language"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"total_balance\": 15000\n}"
+				}
+			]
+		},
+		{
+			"name": "user specific balance",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 136b428127c82580c5bcd09bb50f6d6c4716b24d",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/v1/user/f174893f-8dc8-41e2-b001-54472cab5d9f/get_balance",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"f174893f-8dc8-41e2-b001-54472cab5d9f",
+						"get_balance"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "400 response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 8371adc9eac34fa8bb65a7de8a548d272f5d2340",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/71f43db1-96e5-4132-9419-913d99b817db/get_balance",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								"71f43db1-96e5-4132-9419-913d99b817db",
+								"get_balance"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 15:46:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Token"
+						},
+						{
+							"key": "Allow",
+							"value": "GET"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "70"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Language"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 401,\n    \"errors\": [\n        {\n            \"field\": \"detail\",\n            \"message\": \"Invalid Token\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "200 response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 136b428127c82580c5bcd09bb50f6d6c4716b24d",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/v1/user/f174893f-8dc8-41e2-b001-54472cab5d9f/get_balance",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"user",
+								"f174893f-8dc8-41e2-b001-54472cab5d9f",
+								"get_balance"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 29 Oct 2022 15:48:58 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "GET"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "17"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Language"
+						},
+						{
+							"key": "Content-Language",
+							"value": "en"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"amount\": 3000\n}"
+				}
+			]
+		}
+	]
+}

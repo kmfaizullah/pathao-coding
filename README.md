@@ -237,3 +237,32 @@ After successful execution of the above command will spin up the docker file and
     "total_balance": 15000
 }
 ```
+
+
+###### Get particular user balance
+
+```End Point```: ```{base_url}/v1/user/all_user_balance``` <br>
+```Request Method```: ```Get``` <br>
+```Authorization```: ```Required[Send Authorization parameter in header using Token prefix. For authentication you will get token after successful login]``` <br>
+
+
+```Sucecessful Response: ```
+```
+{
+    "amount": 3000
+}
+```
+
+```Unsuccessful Response```
+
+```
+{
+    "status": 401,
+    "errors": [
+        {
+            "field": "detail",
+            "message": "Invalid Token"
+        }
+    ]
+}
+```
