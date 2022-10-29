@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.status import HTTP_200_OK
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
+from rest_framework.decorators import action
 
 # Third party imports
 
@@ -16,6 +17,10 @@ from apps.user.services import (
     UserApiService,
 )
 from apps.user.models import User
+
+from apps.core.permissions import (
+    IsUser,
+)
 
 
 class UserLoginApiView(APIView):
@@ -31,7 +36,7 @@ class UserModelViewSet(ModelViewSetPermissionMixin):
     model = User
     serializer_class = UserSerializer
     lookup_field = "uid"
-    http_method_names = ["post",]
+    http_method_names = ["post","patch"]
     permission_classes_by_action = {
         "create": [AllowAny],
     }
@@ -44,6 +49,28 @@ class UserModelViewSet(ModelViewSetPermissionMixin):
         user = admin_service.create_user()
         return Response(
             {"message": "User has been successfully created"}, status=HTTP_200_OK
+        )
+
+    @action(
+        detail=True,
+        methods=["patch"],
+        url_path="amount_transfer",
+        url_name="amount_transfer",
+        permission_classes=[AllowAny],
+    )
+    def user_wallet_to_wallet_amount_transfer(self, request, *args, **kwargs):
+        user_obj = self.get_object()
+        user_service = UserApiService(request=request)
+        history = user_service.amount_transfer_from_one_wallet_to_another_wallet(
+            from_user=user_obj
+        )
+        # user_role = UserRole.objects.filter(user=user_obj).first()
+        # user_role.is_active = False if user_role.is_active else True
+        # user_obj.is_active = False if user_obj.is_active else True
+        # user_obj.save()
+        # user_role.save()
+        return Response(
+            {"message": "User requested amount has been successfully transferred"}, status=HTTP_200_OK
         )
 
 

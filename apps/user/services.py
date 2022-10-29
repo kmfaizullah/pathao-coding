@@ -5,6 +5,8 @@ from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 from django.db import transaction
+from apps.transaction.models import Wallet
+from apps.user.models import User
 
 
 # Third party imports
@@ -24,6 +26,7 @@ from apps.transaction.services import (
     WalletApiService,
     TransactionHistoryApiService,
 )
+
 
 
 
@@ -84,9 +87,9 @@ class UserApiService():
         user_name = request_user_data.get('user_name', None)
         pin = request_user_data.get('pin',None)
         if not user_name or not pin:
-            raise ValidationError ("Valid user name and PIN is required")
+            raise ValidationError ({"error":"Valid user name and PIN is required"})
         if pin and len(pin)>5:
-            raise ValidationError ("Pin should be at max 5")
+            raise ValidationError ({"error":"Pin should be at max 5"})
 
         user_req_data={
             'user_name': user_name,
@@ -114,3 +117,43 @@ class UserApiService():
         txn_data = txn_history_obj.create_transaction_history(
             request_data=txn_history_data
         )
+
+    @transaction.atomic
+    def amount_transfer_from_one_wallet_to_another_wallet(self, from_user):
+        request_transaction_data = self.request.data
+        transaction_amount = request_transaction_data.get('amount', None)
+        to_user = request_transaction_data.get('to_user', None)
+        transaction_type = request_transaction_data.get('transaction_type', None)
+
+        if not transaction_amount or not to_user or not transaction_type:
+            raise ValidationError ({"error":"to user, amount and transaction type is required"})
+
+        to_user_obj = user_model.objects.filter(user_name=to_user).first()
+        if not to_user_obj:
+            raise ValidationError ({"error":"Please enter a valid to user name"})
+
+        if to_user_obj.pk == from_user.pk:
+            raise ValidationError ({"error":"Same wallet transfer is prohibited"})
+
+        user_wallet = from_user.user_having_wallet.amount
+        if transaction_amount > user_wallet:
+            raise ValidationError ({"error": "You do not have enough amount to transfer"})
+
+
+        to_user_wallet = Wallet.objects.filter(user = to_user_obj).first()
+        from_user_wallet = Wallet.objects.filter(user=from_user).first()
+        to_user_wallet.amount = to_user_wallet.amount + transaction_amount
+        from_user_wallet.amount = from_user_wallet.amount - transaction_amount
+        to_user_wallet.save()
+        from_user_wallet.save()
+        txn_history_data={
+            'from_user': from_user.pk,
+            'to_user': to_user_obj.pk,
+            'transaction_amount': transaction_amount,
+            'transaction_type': transaction_type
+        }
+        txn_history_obj = TransactionHistoryApiService()
+        txn_data = txn_history_obj.create_transaction_history(
+            request_data=txn_history_data
+        )
+
