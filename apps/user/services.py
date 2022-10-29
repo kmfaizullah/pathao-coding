@@ -82,7 +82,13 @@ class UserApiService():
         return user_data
 
     @transaction.atomic
-    def create_user(self):
+    def create_user(self) ->None:
+        """
+        This code block contains code for user creation
+
+        Raises:
+            ValidationError: rasie validation error if any criteria fails
+        """
         request_user_data = self.request.data
         user_name = request_user_data.get('user_name', None)
         pin = request_user_data.get('pin',None)
@@ -119,7 +125,16 @@ class UserApiService():
         )
 
     @transaction.atomic
-    def amount_transfer_from_one_wallet_to_another_wallet(self, from_user):
+    def amount_transfer_from_one_wallet_to_another_wallet(self, from_user) ->None:
+        """
+        This code block is responsible for user walter transfer
+
+        Args:
+            from_user (object): user who requests for transaction
+
+        Raises:
+           validation error if any criteria falis
+        """
         request_transaction_data = self.request.data
         transaction_amount = request_transaction_data.get('amount', None)
         to_user = request_transaction_data.get('to_user', None)
@@ -157,7 +172,16 @@ class UserApiService():
             request_data=txn_history_data
         )
 
-    def format_transaction_data(self, data):
+    def format_transaction_data(self, data) ->object:
+        """
+        This is to process user transaction data
+
+        Args:
+            data (object): user transaction data object
+
+        Returns:
+            object: user formated data
+        """
         return {
                 'from_user': data.from_user.user_name,
                 'to_user': data.to_user.user_name,
@@ -165,7 +189,16 @@ class UserApiService():
                 'transaction_date': data.created_at,
                 'amount': data.transaction_amount,
             }
-    def user_transaction_history(self,request_user):
+    def user_transaction_history(self,request_user)->object:
+        """
+        This code block is for getting a specific user transaction history
+
+        Args:
+            request_user (obj): user who requests for transaction
+
+        Returns:
+            object: User transaction history object
+        """
         user_data_history =[]
         all_debit_amount = TransactionHistory.objects.filter(
             from_user = request_user
@@ -183,6 +216,12 @@ class UserApiService():
         return user_data_history
 
     def user_total_balance(self):
+        """
+        This code block is responsible calculating user total balance
+
+        Returns:
+            float: user total balance amount
+        """
         user_total_balance = 0.00
         all_wallet_data = Wallet.objects.all()
         for wallet in all_wallet_data:

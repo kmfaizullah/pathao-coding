@@ -7,10 +7,11 @@
     + [Configure environment variables](#configure-environment-variables)
     + [Run the project](#run-the-project)
     + [See project in action](#see-project-in-action)
+    + [Run project using Docker](#Project-Run-using-docker)
 
 # Before you start
 ----------------------------
-Hello! Welcome to Access doctor PMR project. This `readme.md` file will guide you to run the project in your local machine. The section [Quick Start](#quick-start) has all the required steps to run the project.
+Hello! Welcome to Access doctor Pathao test project. This `readme.md` file will guide you to run the project in your local machine. The section [Quick Start](#quick-start) has all the required steps to run the project.
 
 
 # Quick Start
@@ -46,6 +47,8 @@ pip install -r requirements.txt
 ----------------------------------------
 You are one step behind to run the project. You just need to configure the environment variables before proceeding to the final step. All env variables are provided in `.env.example` file. Create a `.env` file, copy the contents of `.env.example` and change the values according to your server's environment.
 
+It is expected that you have postgresql locally installed in your machine.
+
 ### Run the project
 -------------------
 There is a `run_dev.sh` file inside this directory where all neccessary commands are provided to run the project in development server. Execute the following commands to run the .sh file:
@@ -59,3 +62,20 @@ From next time, you need to run only `./run_dev.sh` command.
 ### See project in action
 -------------------------
 Congratulations! you have successfully run the project in development environment. You can access the project at `8000` port.
+
+### Project Run using docker
+It is expected that you have docker file and postgresql installed in your local machine. 
+Before procedding to docker command please spin up postgresql locally and create a database.
+After basic setup please configure the `.env` with the help of `.env.example` file. Once everything is configured properly, please proceed to execute the docker commands. 
+
+First build the project using the following command:
+
+```
+sudo docker build . -t pathao:0.0.1
+```
+
+Once build is complete, please run the docker file using the following command:
+```
+sudo run -d -p 8000:8000 pathao:0.0.1
+```
+After successful execution of the above command will spin up the docker file and you may access the code by navigating http://127.0.0.0.1:8000 .
