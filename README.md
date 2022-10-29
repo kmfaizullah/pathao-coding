@@ -266,3 +266,11 @@ After successful execution of the above command will spin up the docker file and
     ]
 }
 ```
+
+### Postman API documentation
+
+Here is the postman api documentation link :
+
+```
+https://documenter.getpostman.com/view/22794939/2s8YKFGhXE
+```
